@@ -1,4 +1,5 @@
 #include "YvrEntitlementCallbackProxy.h"
+#include "OnlineSubsystemYvrTypesPrivate.h"
 #include "Online.h"
 
 UYvrEntitlementCallbackProxy::UYvrEntitlementCallbackProxy(const FObjectInitializer& ObjectInitializer)
@@ -20,9 +21,8 @@ void UYvrEntitlementCallbackProxy::Activate()
 	if (YvrIdentityInterface.IsValid())
 	{
 
-		auto Unused = new FUniqueNetIdString("UNUSED", YVR_SUBSYSTEM);
 		YvrIdentityInterface->GetUserPrivilege(
-			*Unused,
+			*FUniqueNetIdYvr::EmptyId(),
 			EUserPrivileges::CanPlay,
 			IOnlineIdentity::FOnGetUserPrivilegeCompleteDelegate::CreateUObject(this, &UYvrEntitlementCallbackProxy::OnUserPrivilegeCompleteDelegate)
 		);

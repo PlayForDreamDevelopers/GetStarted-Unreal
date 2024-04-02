@@ -1,4 +1,5 @@
 #include "OnlineMessageTaskManagerYvr.h"
+#include "OnlineSubsystemYvrWrapper.h"
 #include "OnlineSubsystem.h"
 
 void FOnlineMessageTaskManagerYvr::OnReceiveMessage(YvrMessageHandle Message)

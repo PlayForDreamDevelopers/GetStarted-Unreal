@@ -1,4 +1,5 @@
 #include "YvrIdentityCallbackProxy.h"
+#include "OnlineSubsystemYvrTypesPrivate.h"
 #include "Online.h"
 
 UYvrIdentityCallbackProxy::UYvrIdentityCallbackProxy(const FObjectInitializer& ObjectInitializer)
@@ -38,7 +39,7 @@ void UYvrIdentityCallbackProxy::OnLoginCompleteDelegate(int32 Unused, bool bWasS
 	Online::GetIdentityInterface()->ClearOnLoginCompleteDelegate_Handle(LocalUserNum, DelegateHandle);
 	if (bWasSuccessful)
 	{
-		auto PlayerNickName = Online::GetIdentityInterface()->GetPlayerNickname(LocalUserNum);
+		auto PlayerNickName = Online::GetIdentityInterface(YVR_SUBSYSTEM)->GetPlayerNickname(LocalUserNum);
 		OnSuccess.Broadcast(UserId.ToString(), PlayerNickName);
 	}
 	else

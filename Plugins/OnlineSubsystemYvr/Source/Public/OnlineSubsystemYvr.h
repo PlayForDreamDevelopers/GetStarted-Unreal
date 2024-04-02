@@ -12,6 +12,12 @@ typedef TSharedPtr<class FOnlineAchievementsYvr, ESPMode::ThreadSafe> FOnlineAch
 typedef TSharedPtr<class FOnlineFriendsYvr, ESPMode::ThreadSafe> FOnlineFriendsYvrPtr;
 typedef TSharedPtr<class FOnlineLeaderboardYvr, ESPMode::ThreadSafe> FOnlineLeaderboardYvrPtr;
 
+//Yvr Platform
+typedef TSharedPtr<class FYvrPlatformIAPInterface, ESPMode::ThreadSafe> FYvrPlatformIAPInterfacePtr;
+
+//Yvr Sport
+typedef TSharedPtr<class FOnlineSportYvr, ESPMode::ThreadSafe> FOnlineSportYvrPtr;
+
 class ONLINESUBSYSTEMYVR_API FOnlineSubsystemYvr : public FOnlineSubsystemImpl
 {
 public:
@@ -31,7 +37,6 @@ public:
 	virtual IOnlineTimePtr GetTimeInterface() const override;
 	virtual IOnlineIdentityPtr GetIdentityInterface() const override;
 	virtual IOnlineTitleFilePtr GetTitleFileInterface() const override;
-	virtual IOnlineStorePtr GetStoreInterface() const override;
 	virtual IOnlineStoreV2Ptr GetStoreV2Interface() const override;
 	virtual IOnlinePurchasePtr GetPurchaseInterface() const override;
 	virtual IOnlineEventsPtr GetEventsInterface() const override;
@@ -44,6 +49,12 @@ public:
 	virtual IOnlineStatsPtr GetStatsInterface() const override;
 	virtual IOnlineTurnBasedPtr GetTurnBasedInterface() const override;
 	virtual IOnlineTournamentPtr GetTournamentInterface() const override;
+
+	//Yvr Platform
+	FYvrPlatformIAPInterfacePtr GetYvrPlatformIAPInterface() const;
+
+	//Yvr Sport
+	FOnlineSportYvrPtr GetYvrOnlineSportYvrPtr() const;
 
 	virtual bool Init() override;
 	virtual bool Shutdown() override;
@@ -96,6 +107,12 @@ private:
 
 	/** Interface for Leader board */
 	FOnlineLeaderboardYvrPtr LeaderboardInterface;
+
+	//Yvr Platform
+	FYvrPlatformIAPInterfacePtr YvrIAPInterface;
+
+	//Yvr Sport
+	FOnlineSportYvrPtr OnlineSportYvr;
 };
 
 namespace FNetworkProtocolTypes

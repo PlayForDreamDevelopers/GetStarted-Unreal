@@ -1047,4 +1047,499 @@ double OnlineSubsystemYvrWrapper::GetLeaderboardScore(jobject Obj)
 	}
 	return Ret;
 }
+int OnlineSubsystemYvrWrapper::GetViewerPurchases()
+{
+	int Ret = 0;
+	if (JNIEnv* Env = FAndroidApplication::GetJavaEnv())
+	{
+		static jmethodID Method = FJavaWrapper::FindMethod(Env, FJavaWrapper::GameActivityClassID, "getViewerPurchases", "()I", false);
+		Ret = FJavaWrapper::CallIntMethod(Env, FJavaWrapper::GameActivityThis, Method);
+	}
+	return Ret;
+}
+int OnlineSubsystemYvrWrapper::GetPurchaseSize(jobject Obj)
+{
+	int Ret = 0;
+	if (JNIEnv* Env = FAndroidApplication::GetJavaEnv())
+	{
+		static jmethodID Method = FJavaWrapper::FindMethod(Env, FJavaWrapper::GameActivityClassID, "getPurchaseSize", "(Ljava/lang/Object;)I", false);
+		Ret = FJavaWrapper::CallIntMethod(Env, FJavaWrapper::GameActivityThis, Method, Obj);
+	}
+	return Ret;
+}
+jobject OnlineSubsystemYvrWrapper::GetPurchaseByIndex(jobject Obj, int Index)
+{
+	jobject Ret = 0;
+	if (JNIEnv* Env = FAndroidApplication::GetJavaEnv())
+	{
+		static jmethodID Method = FJavaWrapper::FindMethod(Env, FJavaWrapper::GameActivityClassID, "getPurchaseByIndex", "(Ljava/lang/Object;I)Ljava/lang/Object;", false);
+		Ret = FJavaWrapper::CallObjectMethod(Env, FJavaWrapper::GameActivityThis, Method, Obj, Index);
+	}
+	return Ret;
+}
+FString OnlineSubsystemYvrWrapper::GetSkuOfPurchase(jobject Obj)
+{
+	FString Ret = FString("");
+	if (JNIEnv* Env = FAndroidApplication::GetJavaEnv())
+	{
+		static jmethodID Method = FJavaWrapper::FindMethod(Env, FJavaWrapper::GameActivityClassID, "getSkuOfPurchase", "(Ljava/lang/Object;)Ljava/lang/String;", false);
+		jstring JavaString = (jstring)FJavaWrapper::CallObjectMethod(Env, FJavaWrapper::GameActivityThis, Method, Obj);
+		if (JavaString != NULL)
+		{
+			const char* JavaChars = Env->GetStringUTFChars(JavaString, 0);
+			Ret = FString(UTF8_TO_TCHAR(JavaChars));
+			Env->ReleaseStringUTFChars(JavaString, JavaChars);
+			Env->DeleteLocalRef(JavaString);
+		}
+	}
+	return Ret;
+}
+FString OnlineSubsystemYvrWrapper::GetNameOfPurchase(jobject Obj)
+{
+	FString Ret = FString("");
+	if (JNIEnv* Env = FAndroidApplication::GetJavaEnv())
+	{
+		static jmethodID Method = FJavaWrapper::FindMethod(Env, FJavaWrapper::GameActivityClassID, "getNameOfPurchase", "(Ljava/lang/Object;)Ljava/lang/String;", false);
+		jstring JavaString = (jstring)FJavaWrapper::CallObjectMethod(Env, FJavaWrapper::GameActivityThis, Method, Obj);
+		if (JavaString != NULL)
+		{
+			const char* JavaChars = Env->GetStringUTFChars(JavaString, 0);
+			Ret = FString(UTF8_TO_TCHAR(JavaChars));
+			Env->ReleaseStringUTFChars(JavaString, JavaChars);
+			Env->DeleteLocalRef(JavaString);
+		}
+	}
+	return Ret;
+}
+int OnlineSubsystemYvrWrapper::GetTypeOfPurchase(jobject Obj)
+{
+	int Ret = 0;
+	if (JNIEnv* Env = FAndroidApplication::GetJavaEnv())
+	{
+		static jmethodID Method = FJavaWrapper::FindMethod(Env, FJavaWrapper::GameActivityClassID, "getTypeOfPurchase", "(Ljava/lang/Object;)I", false);
+		Ret = FJavaWrapper::CallIntMethod(Env, FJavaWrapper::GameActivityThis, Method, Obj);
+	}
+	return Ret;
+}
+FString OnlineSubsystemYvrWrapper::GetScoverOfPurchase(jobject Obj)
+{
+	FString Ret = FString("");
+	if (JNIEnv* Env = FAndroidApplication::GetJavaEnv())
+	{
+		static jmethodID Method = FJavaWrapper::FindMethod(Env, FJavaWrapper::GameActivityClassID, "getScoverOfPurchase", "(Ljava/lang/Object;)Ljava/lang/String;", false);
+		jstring JavaString = (jstring)FJavaWrapper::CallObjectMethod(Env, FJavaWrapper::GameActivityThis, Method, Obj);
+		if (JavaString != NULL)
+		{
+			const char* JavaChars = Env->GetStringUTFChars(JavaString, 0);
+			Ret = FString(UTF8_TO_TCHAR(JavaChars));
+			Env->ReleaseStringUTFChars(JavaString, JavaChars);
+			Env->DeleteLocalRef(JavaString);
+		}
+	}
+	return Ret;
+}
+FString OnlineSubsystemYvrWrapper::GetTradeNoOfPurchase(jobject Obj)
+{
+	FString Ret = FString("");
+	if (JNIEnv* Env = FAndroidApplication::GetJavaEnv())
+	{
+		static jmethodID Method = FJavaWrapper::FindMethod(Env, FJavaWrapper::GameActivityClassID, "getTradeNoOfPurchase", "(Ljava/lang/Object;)Ljava/lang/String;", false);
+		jstring JavaString = (jstring)FJavaWrapper::CallObjectMethod(Env, FJavaWrapper::GameActivityThis, Method, Obj);
+		if (JavaString != NULL)
+		{
+			const char* JavaChars = Env->GetStringUTFChars(JavaString, 0);
+			Ret = FString(UTF8_TO_TCHAR(JavaChars));
+			Env->ReleaseStringUTFChars(JavaString, JavaChars);
+			Env->DeleteLocalRef(JavaString);
+		}
+	}
+	return Ret;
+}
+float OnlineSubsystemYvrWrapper::GetPriceOfProduct(jobject Obj)
+{
+	float Ret = 0;
+	if (JNIEnv* Env = FAndroidApplication::GetJavaEnv())
+	{
+		static jmethodID Method = FJavaWrapper::FindMethod(Env, FJavaWrapper::GameActivityClassID, "getPriceOfProduct", "(Ljava/lang/Object;)F", false);
+		Ret = FJavaWrapper::CallFloatMethod(Env, FJavaWrapper::GameActivityThis, Method, Obj);
+	}
+	return Ret;
+}
+jobject OnlineSubsystemYvrWrapper::GetPurchaseByMessage(jobject Obj)
+{
+	jobject Ret = 0;
+	if (JNIEnv* Env = FAndroidApplication::GetJavaEnv())
+	{
+		static jmethodID Method = FJavaWrapper::FindMethod(Env, FJavaWrapper::GameActivityClassID, "getPurchaseByMessage", "(Ljava/lang/Object;)Ljava/lang/Object;", false);
+		Ret = FJavaWrapper::CallObjectMethod(Env, FJavaWrapper::GameActivityThis, Method, Obj);
+	}
+	return Ret;
+}
+int OnlineSubsystemYvrWrapper::GetProductsBySKU(TArray<FString> Skus)
+{
+	int Ret = 0;
+	if (JNIEnv* Env = FAndroidApplication::GetJavaEnv())
+	{
+		auto SkusArray = NewScopedJavaObject(Env, (jobjectArray)Env->NewObjectArray(Skus.Num(), FJavaWrapper::JavaStringClass, NULL));
+		if (SkusArray)
+		{
+			for (uint32 Param = 0; Param < Skus.Num(); Param++)
+			{
+				auto StringValue = FJavaHelper::ToJavaString(Env, Skus[Param]);
+				Env->SetObjectArrayElement(*SkusArray, Param, *StringValue);
+			}
+		}
+
+		static jmethodID Method = FJavaWrapper::FindMethod(Env, FJavaWrapper::GameActivityClassID, "getProductsBySKU", "([Ljava/lang/String;)I", false);
+		Ret = FJavaWrapper::CallIntMethod(Env, FJavaWrapper::GameActivityThis, Method, *SkusArray);
+	}
+	return Ret;
+}
+int OnlineSubsystemYvrWrapper::GetProductSize(jobject Obj)
+{
+	int Ret = 0;
+	if (JNIEnv* Env = FAndroidApplication::GetJavaEnv())
+	{
+		static jmethodID Method = FJavaWrapper::FindMethod(Env, FJavaWrapper::GameActivityClassID, "getProductSize", "(Ljava/lang/Object;)I", false);
+		Ret = FJavaWrapper::CallIntMethod(Env, FJavaWrapper::GameActivityThis, Method, Obj);
+	}
+	return Ret;
+}
+jobject OnlineSubsystemYvrWrapper::GetProductByIndex(jobject Obj, int Index)
+{
+	jobject Ret = 0;
+	if (JNIEnv* Env = FAndroidApplication::GetJavaEnv())
+	{
+		static jmethodID Method = FJavaWrapper::FindMethod(Env, FJavaWrapper::GameActivityClassID, "getProductByIndex", "(Ljava/lang/Object;I)Ljava/lang/Object;", false);
+		Ret = FJavaWrapper::CallObjectMethod(Env, FJavaWrapper::GameActivityThis, Method, Obj, Index);
+	}
+	return Ret;
+}
+FString OnlineSubsystemYvrWrapper::GetSkuOfProduct(jobject Obj)
+{
+	FString Ret = FString("");
+	if (JNIEnv* Env = FAndroidApplication::GetJavaEnv())
+	{
+		static jmethodID Method = FJavaWrapper::FindMethod(Env, FJavaWrapper::GameActivityClassID, "getSkuOfProduct", "(Ljava/lang/Object;)Ljava/lang/String;", false);
+		jstring JavaString = (jstring)FJavaWrapper::CallObjectMethod(Env, FJavaWrapper::GameActivityThis, Method, Obj);
+		if (JavaString != NULL)
+		{
+			const char* JavaChars = Env->GetStringUTFChars(JavaString, 0);
+			Ret = FString(UTF8_TO_TCHAR(JavaChars));
+			Env->ReleaseStringUTFChars(JavaString, JavaChars);
+			Env->DeleteLocalRef(JavaString);
+		}
+	}
+	return Ret;
+}
+FString OnlineSubsystemYvrWrapper::GetNameOfProduct(jobject Obj)
+{
+	FString Ret = FString("");
+	if (JNIEnv* Env = FAndroidApplication::GetJavaEnv())
+	{
+		static jmethodID Method = FJavaWrapper::FindMethod(Env, FJavaWrapper::GameActivityClassID, "getNameOfProduct", "(Ljava/lang/Object;)Ljava/lang/String;", false);
+		jstring JavaString = (jstring)FJavaWrapper::CallObjectMethod(Env, FJavaWrapper::GameActivityThis, Method, Obj);
+		if (JavaString != NULL)
+		{
+			const char* JavaChars = Env->GetStringUTFChars(JavaString, 0);
+			Ret = FString(UTF8_TO_TCHAR(JavaChars));
+			Env->ReleaseStringUTFChars(JavaString, JavaChars);
+			Env->DeleteLocalRef(JavaString);
+		}
+	}
+	return Ret;
+}
+int OnlineSubsystemYvrWrapper::GetTypeOfProduct(jobject Obj)
+{
+	int Ret = 0;
+	if (JNIEnv* Env = FAndroidApplication::GetJavaEnv())
+	{
+		static jmethodID Method = FJavaWrapper::FindMethod(Env, FJavaWrapper::GameActivityClassID, "getTypeOfProduct", "(Ljava/lang/Object;)I", false);
+		Ret = FJavaWrapper::CallIntMethod(Env, FJavaWrapper::GameActivityThis, Method, Obj);
+	}
+	return Ret;
+}
+FString OnlineSubsystemYvrWrapper::GetScoverOfProduct(jobject Obj)
+{
+	FString Ret = FString("");
+	if (JNIEnv* Env = FAndroidApplication::GetJavaEnv())
+	{
+		static jmethodID Method = FJavaWrapper::FindMethod(Env, FJavaWrapper::GameActivityClassID, "getScoverOfProduct", "(Ljava/lang/Object;)Ljava/lang/String;", false);
+		jstring JavaString = (jstring)FJavaWrapper::CallObjectMethod(Env, FJavaWrapper::GameActivityThis, Method, Obj);
+		if (JavaString != NULL)
+		{
+			const char* JavaChars = Env->GetStringUTFChars(JavaString, 0);
+			Ret = FString(UTF8_TO_TCHAR(JavaChars));
+			Env->ReleaseStringUTFChars(JavaString, JavaChars);
+			Env->DeleteLocalRef(JavaString);
+		}
+	}
+	return Ret;
+}
+FString OnlineSubsystemYvrWrapper::GetBriefOfProduct(jobject Obj)
+{
+	FString Ret = FString("");
+	if (JNIEnv* Env = FAndroidApplication::GetJavaEnv())
+	{
+		static jmethodID Method = FJavaWrapper::FindMethod(Env, FJavaWrapper::GameActivityClassID, "getBriefOfProduct", "(Ljava/lang/Object;)Ljava/lang/String;", false);
+		jstring JavaString = (jstring)FJavaWrapper::CallObjectMethod(Env, FJavaWrapper::GameActivityThis, Method, Obj);
+		if (JavaString != NULL)
+		{
+			const char* JavaChars = Env->GetStringUTFChars(JavaString, 0);
+			Ret = FString(UTF8_TO_TCHAR(JavaChars));
+			Env->ReleaseStringUTFChars(JavaString, JavaChars);
+			Env->DeleteLocalRef(JavaString);
+		}
+	}
+	return Ret;
+}
+int OnlineSubsystemYvrWrapper::LaunchCheckoutFlow(FString Sku, float Amount)
+{
+	int Ret = 0;
+	if (JNIEnv* Env = FAndroidApplication::GetJavaEnv())
+	{
+		jstring ProductSku = Env->NewStringUTF(TCHAR_TO_UTF8(*Sku));
+		static jmethodID Method = FJavaWrapper::FindMethod(Env, FJavaWrapper::GameActivityClassID, "launchCheckoutFlow", "(Ljava/lang/String;F)I", false);
+		Ret = FJavaWrapper::CallIntMethod(Env, FJavaWrapper::GameActivityThis, Method, ProductSku, Amount);
+		Env->DeleteLocalRef(ProductSku);
+	}
+	return Ret;
+}
+int OnlineSubsystemYvrWrapper::ConsumePurchase(FString Sku)
+{
+	int Ret = 0;
+	if (JNIEnv* Env = FAndroidApplication::GetJavaEnv())
+	{
+		jstring ProductSku = Env->NewStringUTF(TCHAR_TO_UTF8(*Sku));
+		static jmethodID Method = FJavaWrapper::FindMethod(Env, FJavaWrapper::GameActivityClassID, "consumePurchase", "(Ljava/lang/String;)I", false);
+		Ret = FJavaWrapper::CallIntMethod(Env, FJavaWrapper::GameActivityThis, Method, ProductSku);
+		Env->DeleteLocalRef(ProductSku);
+	}
+	return Ret;
+}
+
+//Sport
+int OnlineSubsystemYvrWrapper::GetUseInfo()
+{
+	int Ret = 0;
+	if(JNIEnv* Env = FAndroidApplication::GetJavaEnv())
+	{
+		static jmethodID Method = FJavaWrapper::FindMethod(Env, FJavaWrapper::GameActivityClassID, "getUserInfo", "()I", false);
+		Ret = FJavaWrapper::CallIntMethod(Env, FJavaWrapper::GameActivityThis, Method);
+	}
+	return Ret;
+}
+int OnlineSubsystemYvrWrapper::GetGender(jobject Obj)
+{
+	int Ret = 0;
+	if(JNIEnv* Env = FAndroidApplication::GetJavaEnv())
+	{
+		static jmethodID Method = FJavaWrapper::FindMethod(Env, FJavaWrapper::GameActivityClassID, "getGender", "(Ljava/lang/Object;)I", false);
+		Ret = FJavaWrapper::CallIntMethod(Env, FJavaWrapper::GameActivityThis, Method, Obj);
+	}
+	return Ret;
+}
+int OnlineSubsystemYvrWrapper::GetBirthDay(jobject Obj)
+{
+	int Ret = 0;
+	if(JNIEnv* Env = FAndroidApplication::GetJavaEnv())
+	{
+		static jmethodID Method = FJavaWrapper::FindMethod(Env, FJavaWrapper::GameActivityClassID, "getBirthDay", "(Ljava/lang/Object;)I", false);
+		Ret = FJavaWrapper::CallIntMethod(Env, FJavaWrapper::GameActivityThis, Method, Obj);
+	}
+	return Ret;
+}
+int OnlineSubsystemYvrWrapper::GetStature(jobject Obj)
+{
+	int Ret = 0;
+	if(JNIEnv* Env = FAndroidApplication::GetJavaEnv())
+	{
+		static jmethodID Method = FJavaWrapper::FindMethod(Env, FJavaWrapper::GameActivityClassID, "getStature", "(Ljava/lang/Object;)I", false);
+		Ret = FJavaWrapper::CallIntMethod(Env, FJavaWrapper::GameActivityThis, Method, Obj);
+	}
+	return Ret;
+}
+int OnlineSubsystemYvrWrapper::GetWeight(jobject Obj)
+{
+	int Ret = 0;
+	if(JNIEnv* Env = FAndroidApplication::GetJavaEnv())
+	{
+		static jmethodID Method = FJavaWrapper::FindMethod(Env, FJavaWrapper::GameActivityClassID, "getWeight", "(Ljava/lang/Object;)I", false);
+		Ret = FJavaWrapper::CallIntMethod(Env, FJavaWrapper::GameActivityThis, Method, Obj);
+	}
+	return Ret;
+}
+int OnlineSubsystemYvrWrapper::GetPlanCalorie(jobject Obj)
+{
+	int Ret = 0;
+	if(JNIEnv* Env = FAndroidApplication::GetJavaEnv())
+	{
+		static jmethodID Method = FJavaWrapper::FindMethod(Env, FJavaWrapper::GameActivityClassID, "getPlanCalorie", "(Ljava/lang/Object;)I", false);
+		Ret = FJavaWrapper::CallIntMethod(Env, FJavaWrapper::GameActivityThis, Method, Obj);
+	}
+	return Ret;
+}
+int OnlineSubsystemYvrWrapper::GetPlanDurationInSeconds(jobject Obj)
+{
+	int Ret = 0;
+	if(JNIEnv* Env = FAndroidApplication::GetJavaEnv())
+	{
+		static jmethodID Method = FJavaWrapper::FindMethod(Env, FJavaWrapper::GameActivityClassID, "getPlanDurationInSeconds", "(Ljava/lang/Object;)I", false);
+		Ret = FJavaWrapper::CallIntMethod(Env, FJavaWrapper::GameActivityThis, Method, Obj);
+	}
+	return Ret;
+}
+int OnlineSubsystemYvrWrapper::GetDaysPerWeek(jobject Obj)
+{
+	int Ret = 0;
+	if(JNIEnv* Env = FAndroidApplication::GetJavaEnv())
+	{
+		static jmethodID Method = FJavaWrapper::FindMethod(Env, FJavaWrapper::GameActivityClassID, "getDaysPerWeek", "(Ljava/lang/Object;)I", false);
+		Ret = FJavaWrapper::CallIntMethod(Env, FJavaWrapper::GameActivityThis, Method, Obj);
+	}
+	return Ret;
+}
+
+int OnlineSubsystemYvrWrapper::GetSummary(long beginTime, long endTime)
+{
+	int Ret = 0;
+	if(JNIEnv* Env = FAndroidApplication::GetJavaEnv())
+	{
+		static jmethodID Method = FJavaWrapper::FindMethod(Env, FJavaWrapper::GameActivityClassID, "getSummary", "(j;j;)I", false);
+		Ret = FJavaWrapper::CallIntMethod(Env, FJavaWrapper::GameActivityThis, Method, beginTime, endTime);
+	}
+	return Ret;
+}
+int OnlineSubsystemYvrWrapper::GetSummary(FString beginTime, FString endTime)
+{
+	int Ret = 0;
+	if(JNIEnv* Env = FAndroidApplication::GetJavaEnv())
+	{
+		jstring jst_beginTime = Env->NewStringUTF(TCHAR_TO_UTF8(*beginTime));
+		jstring jst_endTime = Env->NewStringUTF(TCHAR_TO_UTF8(*endTime));
+		static jmethodID Method = FJavaWrapper::FindMethod(Env, FJavaWrapper::GameActivityClassID, "getSummary", "(Ljava/lang/String;Ljava/lang/String;)I", false);
+		Ret = FJavaWrapper::CallIntMethod(Env, FJavaWrapper::GameActivityThis, Method, jst_beginTime, jst_endTime);
+	}
+	return Ret;
+}
+long OnlineSubsystemYvrWrapper::GetSummaryDurationInSeconds(jobject Obj)
+{
+	long Ret = 0;
+	if(JNIEnv* Env = FAndroidApplication::GetJavaEnv())
+	{
+		static jmethodID Method = FJavaWrapper::FindMethod(Env, FJavaWrapper::GameActivityClassID, "getSummaryDurationInSeconds", "(Ljava/lang/Object;)j", false);
+		Ret = FJavaWrapper::CallIntMethod(Env, FJavaWrapper::GameActivityThis, Method, Obj);
+	}
+	return Ret;
+}
+double OnlineSubsystemYvrWrapper::GetSummaryCalorie(jobject Obj)
+{
+	double Ret = 0.0;
+	if (JNIEnv* Env = FAndroidApplication::GetJavaEnv())
+	{
+		static jmethodID Method = FJavaWrapper::FindMethod(Env, FJavaWrapper::GameActivityClassID, "getSummaryCalorie", "(Ljava/lang/Object;)D", false);
+		Ret = FJavaWrapper::CallDoubleMethod(Env, FJavaWrapper::GameActivityThis, Method, Obj);
+	}
+	return Ret;
+}
+
+int OnlineSubsystemYvrWrapper::GetDailySummary(long beginTime, long endTime)
+{
+	int Ret = 0;
+	if(JNIEnv* Env = FAndroidApplication::GetJavaEnv())
+	{
+		static jmethodID Method = FJavaWrapper::FindMethod(Env, FJavaWrapper::GameActivityClassID, "getDailySummary", "(j;j;)I", false);
+		Ret = FJavaWrapper::CallIntMethod(Env, FJavaWrapper::GameActivityThis, Method, beginTime, endTime);
+	}
+	return Ret;
+}
+int OnlineSubsystemYvrWrapper::GetDailySummary(FString beginTime, FString endTime)
+{
+	int Ret = 0;
+	if(JNIEnv* Env = FAndroidApplication::GetJavaEnv())
+	{
+		jstring jst_beginTime = Env->NewStringUTF(TCHAR_TO_UTF8(*beginTime));
+		jstring jst_endTime = Env->NewStringUTF(TCHAR_TO_UTF8(*endTime));
+		static jmethodID Method = FJavaWrapper::FindMethod(Env, FJavaWrapper::GameActivityClassID, "getDailySummary", "(Ljava/lang/String;Ljava/lang/String;)I", false);
+		Ret = FJavaWrapper::CallIntMethod(Env, FJavaWrapper::GameActivityThis, Method, jst_beginTime, jst_endTime);
+	}
+	return Ret;
+}
+int OnlineSubsystemYvrWrapper::GetDailySummarySize(jobject Obj)
+{
+	int Ret = 0;
+	if(JNIEnv* Env = FAndroidApplication::GetJavaEnv())
+	{
+		static jmethodID Method = FJavaWrapper::FindMethod(Env, FJavaWrapper::GameActivityClassID, "getDailySummarySize", "(Ljava/lang/Object;)I", false);
+		Ret = FJavaWrapper::CallIntMethod(Env, FJavaWrapper::GameActivityThis, Method, Obj);
+	}
+	return Ret;
+}
+jobject OnlineSubsystemYvrWrapper::GetDailySummaryByIndex(jobject Obj, int i)
+{
+	jobject Ret = 0;
+	if (JNIEnv* Env = FAndroidApplication::GetJavaEnv())
+	{
+		static jmethodID Method = FJavaWrapper::FindMethod(Env, FJavaWrapper::GameActivityClassID, "getDailySummaryByIndex", "(Ljava/lang/Object;I)Ljava/lang/Object;", false);
+		Ret = FJavaWrapper::CallObjectMethod(Env, FJavaWrapper::GameActivityThis, Method, Obj, i);
+	}
+	return Ret;
+}
+FString OnlineSubsystemYvrWrapper::GetDailySummaryDate(jobject Obj)
+{
+	FString Ret = FString("");
+	if (JNIEnv* Env = FAndroidApplication::GetJavaEnv())
+	{
+		static jmethodID Method = FJavaWrapper::FindMethod(Env, FJavaWrapper::GameActivityClassID, "getDailySummaryDate", "(Ljava/lang/Object;)Ljava/lang/String;", false);
+		jstring JavaString = (jstring)FJavaWrapper::CallObjectMethod(Env, FJavaWrapper::GameActivityThis, Method, Obj);
+		if (JavaString != NULL)
+		{
+			const char* JavaChars = Env->GetStringUTFChars(JavaString, 0);
+			Ret = FString(UTF8_TO_TCHAR(JavaChars));
+			Env->ReleaseStringUTFChars(JavaString, JavaChars);
+			Env->DeleteLocalRef(JavaString);
+		}
+	}
+	return Ret;
+}
+int OnlineSubsystemYvrWrapper::GetDailySummaryPlanDurationInSeconds(jobject Obj)
+{
+	int Ret = 0;
+	if(JNIEnv* Env = FAndroidApplication::GetJavaEnv())
+	{
+		static jmethodID Method = FJavaWrapper::FindMethod(Env, FJavaWrapper::GameActivityClassID, "getDailySummaryPlanDurationInSeconds", "(Ljava/lang/Object;)I", false);
+		Ret = FJavaWrapper::CallIntMethod(Env, FJavaWrapper::GameActivityThis, Method, Obj);
+	}
+	return Ret;
+}
+long OnlineSubsystemYvrWrapper::GetDailySummaryDurationInSeconds(jobject Obj)
+{
+	long Ret = 0;
+	if (JNIEnv* Env = FAndroidApplication::GetJavaEnv())
+	{
+		static jmethodID Method = FJavaWrapper::FindMethod(Env, FJavaWrapper::GameActivityClassID, "getDailySummaryDurationInSeconds", "(Ljava/lang/Object;)J", false);
+		Ret = FJavaWrapper::CallLongMethod(Env, FJavaWrapper::GameActivityThis, Method, Obj);
+	}
+	return Ret;
+}
+double OnlineSubsystemYvrWrapper::GetDailySummaryCalorie(jobject Obj)
+{
+	double Ret = 0.0;
+	if (JNIEnv* Env = FAndroidApplication::GetJavaEnv())
+	{
+		static jmethodID Method = FJavaWrapper::FindMethod(Env, FJavaWrapper::GameActivityClassID, "getDailySummaryCalorie", "(Ljava/lang/Object;)D", false);
+		Ret = FJavaWrapper::CallDoubleMethod(Env, FJavaWrapper::GameActivityThis, Method, Obj);
+	}
+	return Ret;
+}
+double OnlineSubsystemYvrWrapper::GetDailySummaryPlanCalorie(jobject Obj)
+{
+	double Ret = 0.0;
+	if (JNIEnv* Env = FAndroidApplication::GetJavaEnv())
+	{
+		static jmethodID Method = FJavaWrapper::FindMethod(Env, FJavaWrapper::GameActivityClassID, "getDailySummaryPlanCalorie", "(Ljava/lang/Object;)D", false);
+		Ret = FJavaWrapper::CallDoubleMethod(Env, FJavaWrapper::GameActivityThis, Method, Obj);
+	}
+	return Ret;
+}
 #endif

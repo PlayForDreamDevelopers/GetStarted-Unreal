@@ -1,7 +1,7 @@
 {
 	"FileVersion": 3,
 	"Version": 1,
-	"VersionName": "1.0.1",
+	"VersionName": "1.0.5",
 	"FriendlyName": "Online Subsystem Yvr",
 	"Description": "Access to Yvr platform",
 	"Category": "Online Platform",

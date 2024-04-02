@@ -104,5 +104,53 @@ public:
 	static FString GetLeaderboardUserNickName(jobject Obj);
 	static long GetLeaderboardRank(jobject Obj);
 	static double GetLeaderboardScore(jobject Obj);
+
+	//IAP
+	static int GetViewerPurchases();
+	static int GetPurchaseSize(jobject Obj);
+	static jobject GetPurchaseByMessage(jobject Obj);
+	static jobject GetPurchaseByIndex(jobject Obj, int Index);
+	static FString GetSkuOfPurchase(jobject Obj);
+	static FString GetNameOfPurchase(jobject Obj);
+	static int GetTypeOfPurchase(jobject Obj);
+	static FString GetScoverOfPurchase(jobject Obj);
+	static FString GetTradeNoOfPurchase(jobject Obj);
+
+	static int GetProductsBySKU(TArray<FString> Skus);
+	static int GetProductSize(jobject Obj);
+	static jobject GetProductByIndex(jobject Obj, int Index);
+	static FString GetSkuOfProduct(jobject Obj);
+	static FString GetNameOfProduct(jobject Obj);
+	static int GetTypeOfProduct(jobject Obj);
+	static FString GetScoverOfProduct(jobject Obj);
+	static FString GetBriefOfProduct(jobject Obj);
+	static float GetPriceOfProduct(jobject Obj);
+
+	static int LaunchCheckoutFlow(FString Sku, float Amount);
+	static int ConsumePurchase(FString Sku);
+	//Sport
+	static int GetUseInfo();
+	static int GetGender(jobject Obj);
+	static int GetBirthDay(jobject Obj);
+	static int GetStature(jobject Obj);
+	static int GetWeight(jobject Obj);
+	static int GetPlanCalorie(jobject Obj);
+	static int GetPlanDurationInSeconds(jobject Obj);
+	static int GetDaysPerWeek(jobject Obj);
+
+	static int GetSummary(long beginTime, long endTime);
+	static int GetSummary(FString beginTime, FString endTime);
+	static long GetSummaryDurationInSeconds(jobject Obj);
+	static double GetSummaryCalorie(jobject Obj);
+
+	static int GetDailySummary(long beginTime, long endTime);
+	static int GetDailySummary(FString beginTime, FString endTime);
+	static int GetDailySummarySize(jobject Obj);
+	static jobject GetDailySummaryByIndex(jobject Obj, int i);
+	static FString GetDailySummaryDate(jobject Obj);
+	static int GetDailySummaryPlanDurationInSeconds(jobject Obj);
+	static long GetDailySummaryDurationInSeconds(jobject Obj);
+	static double GetDailySummaryCalorie(jobject Obj);
+	static double GetDailySummaryPlanCalorie(jobject Obj);
 #endif
 };

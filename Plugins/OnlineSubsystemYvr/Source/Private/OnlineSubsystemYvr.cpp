@@ -6,6 +6,8 @@
 #include "OnlineFriendsYvr.h"
 #include "OnlineSettingsYvr.h"
 #include "OnlineLeaderboardYvr.h"
+#include "YvrPlatformIAPInterface.h"
+#include "OnlineSportYvr.h"
 
 #if PLATFORM_ANDROID
 #include "Android/AndroidApplication.h"
@@ -84,11 +86,6 @@ IOnlineTitleFilePtr FOnlineSubsystemYvr::GetTitleFileInterface() const
 	return nullptr;
 }
 
-IOnlineStorePtr FOnlineSubsystemYvr::GetStoreInterface() const
-{
-	return nullptr;
-}
-
 IOnlineStoreV2Ptr FOnlineSubsystemYvr::GetStoreV2Interface() const
 {
 	return nullptr;
@@ -149,10 +146,22 @@ IOnlineTournamentPtr FOnlineSubsystemYvr::GetTournamentInterface() const
 	return nullptr;
 }
 
+FYvrPlatformIAPInterfacePtr FOnlineSubsystemYvr::GetYvrPlatformIAPInterface() const
+{
+	return YvrIAPInterface;
+}
+
+FOnlineSportYvrPtr FOnlineSubsystemYvr::GetYvrOnlineSportYvrPtr() const
+{
+	return OnlineSportYvr;
+}
+
 bool FOnlineSubsystemYvr::Init()
 {
+	bYvrInit = false;
 #if PLATFORM_ANDROID
 	bYvrInit = InitWithAndroidPlatform();
+#endif
 	if (bYvrInit)
 	{
 		MessageTaskManager = MakeUnique<FOnlineMessageTaskManagerYvr>();
@@ -162,13 +171,18 @@ bool FOnlineSubsystemYvr::Init()
 		AchievementsInterface = MakeShareable(new FOnlineAchievementsYvr(*this));
 		FriendsInterface = MakeShareable(new FOnlineFriendsYvr(*this));
 		LeaderboardInterface = MakeShareable(new FOnlineLeaderboardYvr(*this));
+
+		//Yvr Platform
+		YvrIAPInterface = MakeShareable(new FYvrPlatformIAPInterface(*this));
+
+		//Yvr Sport FOnlineSportYvr
+		OnlineSportYvr = MakeShareable(new FOnlineSportYvr(*this));
 		StartTicker();
 	}
 	else
 	{
 		FOnlineSubsystemImpl::Shutdown();
 	}
-#endif
 	return bYvrInit;
 }
 
@@ -214,7 +228,7 @@ bool FOnlineSubsystemYvr::InitWithAndroidPlatform()
 	auto result = OnlineSubsystemYvrWrapper::InitPlatformSDK(AppId);
 	if (result)
 	{
-		UE_LOG_ONLINE(Log, TEXT("platform init success"));
+		UE_LOG_ONLINE(Log, TEXT("platform init success %ld"), AppId);
 		return true;
 	}
 #endif

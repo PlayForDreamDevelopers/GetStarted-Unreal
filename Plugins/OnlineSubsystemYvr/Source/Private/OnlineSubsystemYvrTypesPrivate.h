@@ -94,11 +94,17 @@ public:
 		return TEXT("int:") + OSS_UNIQUEID_REDACT(*this, UniqueNetIdStr);
 	}
 
-	/** Needed for TMap::GetTypeHash() */
+#if ENGINE_MAJOR_VERSION > 4 && ENGINE_MINOR_VERSION > 0
+	virtual uint32 GetTypeHash() const override
+	{
+		return ::GetTypeHash((uint64)ID);
+	}
+#else
 	friend uint32 GetTypeHash(const FUniqueNetIdYvr& A)
 	{
 		return GetTypeHash((uint64)A.ID);
 	}
+#endif
 
 	/** global static instance of invalid (zero) id */
 	static const TSharedRef<const FUniqueNetId>& EmptyId()
