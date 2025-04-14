@@ -7,8 +7,9 @@ public class GetStartTarget : TargetRules
 {
 	public GetStartTarget( TargetInfo Target) : base(Target)
 	{
-		Type = TargetType.Game;
-		DefaultBuildSettings = BuildSettingsVersion.V2;
+        bOverrideBuildEnvironment = true;
+        Type = TargetType.Game;
+		DefaultBuildSettings = BuildSettingsVersion.V5;
 		ExtraModuleNames.AddRange( new string[] { "GetStart" } );
 	}
 }

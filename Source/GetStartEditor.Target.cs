@@ -8,7 +8,8 @@ public class GetStartEditorTarget : TargetRules
 	public GetStartEditorTarget( TargetInfo Target) : base(Target)
 	{
 		Type = TargetType.Editor;
-		DefaultBuildSettings = BuildSettingsVersion.V2;
-		ExtraModuleNames.AddRange( new string[] { "GetStart" } );
+		DefaultBuildSettings = BuildSettingsVersion.V5;
+        IncludeOrderVersion = EngineIncludeOrderVersion.Unreal5_4;
+        ExtraModuleNames.AddRange( new string[] { "GetStart" } );
 	}
 }
